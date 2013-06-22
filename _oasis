@@ -1,0 +1,26 @@
+OASISFormat: 0.3
+Name:        eliom-widgets
+Version:     0.1
+Synopsis:    A widget collections in eliom.
+Authors:     Christophe Lecointe
+             Gabriel Radanne
+License:     LGPL-3.0 with OCaml linking exception
+Plugins:     DevFiles (0.3), META (0.3)
+
+Library "eliom-widgets.client"
+  Path: src
+  BuildTools: ocamlbuild
+  Modules: _client/Eliom_widgets
+  InternalModules:
+    _client/Editable
+  BuildDepends:
+    eliom.client, ojwidgets
+
+Library "eliom-widgets.server"
+  Path: src
+  BuildTools: ocamlbuild
+  Modules: _server/Eliom_widgets
+  InternalModules:
+    _server/Editable
+  BuildDepends:
+    eliom.server

@@ -1,0 +1,24 @@
+# OASIS_START
+# DO NOT EDIT (digest: 461c5fd06f17133fd6b5537846f55545)
+package "server" (
+ version = "0.1"
+ description = "A widget collections in eliom."
+ requires = "eliom.server"
+ archive(byte) = "eliom-widgets.server.cma"
+ archive(byte, plugin) = "eliom-widgets.server.cma"
+ archive(native) = "eliom-widgets.server.cmxa"
+ archive(native, plugin) = "eliom-widgets.server.cmxs"
+ exists_if = "eliom-widgets.server.cma"
+)
+package "client" (
+ version = "0.1"
+ description = "A widget collections in eliom."
+ requires = "eliom.client ojwidgets"
+ archive(byte) = "eliom-widgets.client.cma"
+ archive(byte, plugin) = "eliom-widgets.client.cma"
+ archive(native) = "eliom-widgets.client.cmxa"
+ archive(native, plugin) = "eliom-widgets.client.cmxs"
+ exists_if = "eliom-widgets.client.cma"
+)
+# OASIS_STOP
+
