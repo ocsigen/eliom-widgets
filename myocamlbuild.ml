@@ -498,7 +498,14 @@ let dispatch_default = MyOCamlbuildBase.dispatch_default package_default;;
 # 499 "myocamlbuild.ml"
 (* OASIS_STOP *)
 
+module type Exec = sig
+  val name : string
+  val dep : string
+  val package : string
+end
+
 module Ocamlbuild_eliom (Client : sig
+  val exec : (module Exec) option
   val dispatch_default : Ocamlbuild_plugin.hook -> unit
 end) = struct
   open Ocamlbuild_plugin
@@ -571,6 +578,16 @@ end) = struct
       in
       Pack.Slurp.fold f entries ()
     in
+    let tag_byte_file () =
+      match Client.exec with
+        | None -> ()
+        | Some (module Client) ->
+            let file = Pathname.update_extension "ml" Client.dep in
+            tag_file
+              Client.dep
+              (Tags.elements (tags_of_pathname file));
+            tag_file Client.dep ["-thread"]
+    in
     let () =
       let use_type_file need =
         S [A "-ppopt"; A "-type"; A "-ppopt"; P need] in
@@ -582,6 +599,22 @@ end) = struct
       in
       List.iter (fun tags -> pflag tags "need_eliom_type" use_type_file) tags
     in
+    let () =
+      match Client.exec with
+        | None -> ()
+        | Some (module Client) ->
+            dep ["file:" ^ Client.package] [Client.name];
+                rule "js_of_ocaml: .byte -> .js" ~dep:Client.dep ~prod:Client.name
+                  (fun env _ ->
+                    let eliom_client_js =
+                      Pathname.concat
+                        (Pack.Findlib.query "eliom.client").Pack.Findlib.location
+                        "eliom_client.js"
+                    in
+                    Cmd (S [A "js_of_ocaml"; A "-pretty"; A "-noinline"; P eliom_client_js;
+                            A Client.dep; A "-o"; A Client.name])
+                  );
+    in
     flag ["ocaml"; "infer_interface"; "thread"] (A "-thread");
     flag ["ocaml"; "compile"] (S [A "-thread"; A "-syntax"; A "camlp4o"]);
     flag ["ocaml"; "ocamldep"] (S [A "-syntax"; A "camlp4o"]);
@@ -591,6 +624,7 @@ end) = struct
         (match hook with
           | After_rules ->
               tag_eliom_files ();
+              tag_byte_file ();
               copy_rule_with_header "*.eliom -> **/_server/*.ml"
                 ~deps:["%(path)/_type/%(file).inferred.mli"]
                 "%(path)/%(file).eliom" "%(path)/_server/%(file:<*>).ml";
@@ -626,6 +660,7 @@ end) = struct
 end;;
 
 module M = Ocamlbuild_eliom(struct
+  let exec = None
   let dispatch_default = dispatch_default
 end);;
 
