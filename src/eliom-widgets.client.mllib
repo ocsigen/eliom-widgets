@@ -1,5 +1,9 @@
 # OASIS_START
-# DO NOT EDIT (digest: 630b630f4ff3633fd2834ed03075e395)
+# DO NOT EDIT (digest: a63bc5f61b70839b154828c56b6365e7)
 _client/Eliom_widgets
 _client/Editable
+_client/Ojw_button
+_client/Ojw_button_alert
+_client/Ojw_button_show_hide
+_client/Ojw_button_show_hide_focus
 # OASIS_STOP

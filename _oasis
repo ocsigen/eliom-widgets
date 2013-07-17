@@ -12,7 +12,11 @@ Library "eliom-widgets.client"
   BuildTools: ocamlbuild
   Modules: _client/Eliom_widgets
   InternalModules:
-    _client/Editable
+    _client/Editable,
+    _client/Ojw_button,
+    _client/Ojw_button_alert,
+    _client/Ojw_button_show_hide,
+    _client/Ojw_button_show_hide_focus
   BuildDepends:
     eliom.client, ojwidgets
 
