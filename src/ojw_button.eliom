@@ -3,6 +3,10 @@
    Author : Charly Chevalier
 *)
 
+{shared{
+  type radio_set_t = (unit -> unit Lwt.t) ref
+}}
+
 {client{
   open Eliom_content.Html5
 

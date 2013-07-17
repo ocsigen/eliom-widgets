@@ -1,0 +1,16 @@
+PKG_NAME := eliom-widgets
+PKG_VERSION := "BETA"
+PKG_DESCRIPTION := ""
+
+SERVER_SOURCE_DIR  = src/
+SERVER_SOURCE_FILES=$(wildcard\
+					$(addsuffix *.eliom, $(SERVER_SOURCE_DIR))\
+					$(addsuffix *.ml, $(SERVER_SOURCE_DIR)))
+
+CLIENT_SOURCE_DIR  = src/
+CLIENT_SOURCE_FILES=$(wildcard\
+					$(addsuffix *.eliom*, $(CLIENT_SOURCE_DIR)))
+
+SERVER_PA :=
+CLIENT_PA := ojwidgets
+COMMON_OPTS :=
