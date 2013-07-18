@@ -18,6 +18,9 @@ SERVER_PACKAGES :=
 # OCamlfind packages for the client
 CLIENT_PACKAGES := ojwidgets
 
+# Native mode (yes/no): Compile also with native mode (it will always compile with byte mode)
+NATIVE := no
+
 # Debug package (yes/no): Debugging info in compilation
 DEBUG := no
 

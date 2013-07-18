@@ -31,11 +31,15 @@ ifeq ($(DEBUG),yes)
   GENERATE_DEBUG ?= -g
 endif
 
+ifeq ($(NATIVE),on)
+  OPT_RULE = opt
+endif
+
 ##----------------------------------------------------------------------
 ## General
 
 .PHONY: all byte opt
-all: byte opt
+all: byte $(OPT_RULE)
 byte:: $(LIBDIR)/${PKG_NAME}.server.cma $(LIBDIR)/${PKG_NAME}.client.cma
 opt:: $(LIBDIR)/${PKG_NAME}.server.cmxs
 
@@ -190,6 +194,7 @@ $(DEPSDIR):
 clean:
 	-rm -f *.cm[ioax] *.cmxa *.cmxs *.o *.a *.annot
 	-rm -f *.type_mli
+	-rm -f META
 	-rm -rf ${ELIOM_CLIENT_DIR} ${ELIOM_SERVER_DIR} ${LIBDIR}
 
 distclean: clean
