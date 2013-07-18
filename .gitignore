@@ -35,6 +35,6 @@ Session.vim
 ### others
 _client
 _server
-Makefile.depend
+_deps
 META
 .depend
