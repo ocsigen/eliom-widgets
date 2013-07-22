@@ -16,5 +16,5 @@
     let to_button button = To_dom.of_element button
   end
 
-  include Ojwidgets.F.Button_f.Make(In_button_m)
+  include Ojw_button.F.Button_f.Make(In_button_m)
 }}

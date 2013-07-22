@@ -5,11 +5,10 @@
 
 {client{
   open Eliom_content.Html5
-
-  type focusable_t = Ojwidgets.F.Button_show_hide_focus_f.focusable_t
+  type focusable_t = Ojw_button.F.Button_show_hide_focus_f.focusable_t
 
   module In_button_show_hide_focus_m = struct
-    include Ojw_button_show_hide.In_button_show_hide_m
+    include Button_show_hide_.In_button_show_hide_m
 
     type focus_t = [`A | `Input] Eliom_content.Html5.F.elt
 
@@ -18,5 +17,5 @@
       ((Js.Unsafe.coerce focus) : focusable_t Js.t :> focusable_t Js.t)
   end
 
-  include Ojwidgets.F.Button_show_hide_focus_f.Make(In_button_show_hide_focus_m)
+  include Ojw_button.F.Button_show_hide_focus_f.Make(In_button_show_hide_focus_m)
 }}
