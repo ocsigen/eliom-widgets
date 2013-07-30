@@ -164,8 +164,6 @@ reinstall: uninstall install
 ##----------------------------------------------------------------------
 ## Dependencies
 
-DEPSDIR := _deps
-
 ifneq ($(MAKECMDGOALS),distclean)
 ifneq ($(MAKECMDGOALS),clean)
 ifneq ($(MAKECMDGOALS),depend)
@@ -173,6 +171,8 @@ ifneq ($(MAKECMDGOALS),depend)
 endif
 endif
 endif
+
+DEPSDIR := _deps
 
 .depend: $(patsubst %,$(DEPSDIR)/%.server,$(SERVER_FILES)) $(patsubst %,$(DEPSDIR)/%.client,$(CLIENT_FILES))
 	cat $^ > $@
