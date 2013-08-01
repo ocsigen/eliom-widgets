@@ -14,7 +14,7 @@ SERVER_FILES := $(wildcard src/*.eliom* src/button/*.eliom*)
 CLIENT_FILES := $(wildcard src/*.eliom* src/button/*.eliom*)
 
 # OCamlfind packages for the server
-SERVER_PACKAGES :=
+SERVER_PACKAGES := text
 # OCamlfind packages for the client
 CLIENT_PACKAGES := ojwidgets
 
