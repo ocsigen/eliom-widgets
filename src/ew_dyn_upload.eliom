@@ -140,16 +140,8 @@
          match extensions with
            | None -> ()
            | Some exts ->
-               let ext_of_file =
-                 let fn = Eliom_request_info.get_original_filename file in
-                 print_endline ("fn:"^fn);
-                 let fns = Str.split (Str.regexp "\.") fn in
-                 let len = List.length fns in
-                 if len > 0
-                 then List.nth fns (len - 1)
-                 else List.nth fns 0
-               in
-               if not (List.exists (fun ext -> ext_of_file = ext) exts)
+               let fn = Eliom_request_info.get_original_filename file in
+               if not (List.exists (Filename.check_suffix fn) exts)
                then raise Invalid_extension
                else ()
        in
