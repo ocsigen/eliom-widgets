@@ -9,9 +9,9 @@ PKG_VERS := your version
 PKG_DESC := your description
 
 # Source files for the server
-SERVER_FILES := $(wildcard src/*.eliom* src/button/*.eliom*)
+SERVER_FILES := $(wildcard src/*.eliom* src/button/*.eliom* src/dropdown/*.eliom*)
 # Source files for the client
-CLIENT_FILES := $(wildcard src/*.eliom* src/button/*.eliom*)
+CLIENT_FILES := $(wildcard src/*.eliom* src/button/*.eliom* src/dropdown/*.eliom*)
 
 # OCamlfind packages for the server
 SERVER_PACKAGES := text
