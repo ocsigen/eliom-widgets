@@ -3,6 +3,12 @@
    Author : Charly Chevalier
 *)
 
+{shared{
+  class type show_hide_focus_t = object
+    inherit Button_show_hide_.show_hide_t
+  end
+}}
+
 {client{
   open Eliom_content.Html5
   type focusable_t = Ojw_button.F.Button_show_hide_focus_f.focusable_t

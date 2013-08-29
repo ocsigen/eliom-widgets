@@ -5,6 +5,19 @@
 
 {shared{
   type radio_set_t = (unit -> unit Lwt.t) ref
+
+  class type button_t = object
+    method on_pre_press : unit Lwt.t
+    method on_post_press : unit Lwt.t
+    method on_pre_unpress : unit Lwt.t
+    method on_post_unpress : unit Lwt.t
+    method on_press : unit Lwt.t
+    method on_unpress : unit Lwt.t
+    method pressed : bool
+    method press : unit Lwt.t
+    method unpress : unit Lwt.t
+    method switch : unit Lwt.t
+  end
 }}
 
 {client{

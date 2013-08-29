@@ -3,6 +3,12 @@
    Author : Charly Chevalier
 *)
 
+{shared{
+  class type show_hide_t = object
+    inherit Button_.button_t
+  end
+}}
+
 {client{
   open Eliom_content.Html5
 
