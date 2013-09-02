@@ -88,10 +88,7 @@
 
   (** widget low-level which represents a dropdown *)
   class dropdown
-    ~(attach_to
-      : [<  `Input
-          | `A of Html5_types.flow5_without_interactive
-        ] Eliom_content.Html5.D.elt)
+    ~(attach_to : 'a Eliom_content.Html5.D.elt)
     ?(orientation = Bottom)
     ?(circular = true)
     ?(closeable_by_button = true)
@@ -302,8 +299,8 @@
       ul'##style##left <- container_left;
       let computed_ul = Ojw_fun.getComputedStyle ul' in
       let ulw = Ojw_misc.get_full_width computed_ul in
-      (* We want to remove the extra width of the element to exactly
-       * get the same width of the attached element if his size is bigger
+      (* We want to remove the extra width of the element to get exactly
+       * the same width of the attached element if his size is bigger
        * than the ul's one *)
       let extra_inner = Ojw_misc.get_full_width ~with_width:false computed_ul in
       if aw > ulw then
