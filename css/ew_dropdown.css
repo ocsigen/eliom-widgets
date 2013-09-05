@@ -9,6 +9,10 @@ ul.ew_dropdown {
   -webkit-padding-start: 0px;
 }
 
+ul.ew_dropdown li {
+  cursor: pointer;
+}
+
 ul.ew_dropdown li.ew_active {
     background-color: #ccc;
 }

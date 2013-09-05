@@ -11,7 +11,7 @@
       (unit, Eliom_lib.file_info, Eliom_service.nonattached,
        [ `WithoutSuffix ], unit,
        [ `One of Eliom_lib.file_info ] Eliom_parameter.param_name,
-       [ `Registrable ], (string list * string) Eliom_parameter.caml)
+       [ `Registrable ], (string list * string) Eliom_service.caml_service)
         Eliom_service.service
 }}
 
@@ -68,7 +68,7 @@
     fname
 
   let service ?name () =
-    Eliom_service.post_coservice'
+    Eliom_service.Caml.post_coservice'
       ?name
       ~post_params:(Eliom_parameter.file "f")
       ()

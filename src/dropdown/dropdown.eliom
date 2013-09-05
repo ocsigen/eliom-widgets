@@ -181,7 +181,7 @@
                !ret)
           (Dom.list_of_nodeList (ul'##childNodes));
       in
-        (if ret then (!index-1) else -1) (* ternaire i miss you :( *)
+      (if ret then (!index-1) else -1) (* ternaire i miss you :( *)
 
     method internal_on_keyup (e : Dom_html.keyboardEvent Js.t) : unit Lwt.t =
       lwt () =
