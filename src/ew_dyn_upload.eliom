@@ -68,7 +68,7 @@
     fname
 
   let service ?name () =
-    Eliom_service.Caml.post_coservice'
+    Eliom_service.OCaml.post_coservice'
       ?name
       ~post_params:(Eliom_parameter.file "f")
       ()
