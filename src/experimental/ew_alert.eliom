@@ -23,10 +23,10 @@
 
 {client{
   module type T = sig
-    include Ojw_alert_f.T
-      with type 'a elt = 'a Eliom_content.Html5.elt
-       and type parent = parent'
-       and type element = element'
+    include Ojw_alert_sigs.T
+      with type 'a D.elt = 'a Eliom_content.Html5.elt
+       and type D.parent = parent'
+       and type D.element = element'
   end
 
   let nothing r = r
@@ -37,7 +37,10 @@
     type element = element'
 
     let to_dom_elt = To_dom.of_element
+    let of_dom_elt = Of_dom.of_element
+
     let to_dom_parent = To_dom.of_element
+    let of_dom_parent = Of_dom.of_element
 
     let default_parent () = Of_dom.of_element (document##body)
   end)

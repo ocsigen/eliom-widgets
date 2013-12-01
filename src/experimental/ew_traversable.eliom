@@ -1,7 +1,7 @@
 {shared{
-  open Eliom_content.Html5.D
   open Html5_types
   open Eliom_content.Html5
+  open Eliom_content.Html5.F
 }}
 
 {shared{
@@ -19,6 +19,14 @@
 }}
 
 {client{
+  module type T = sig
+    include Ojw_traversable_sigs.T
+      with type 'a D.elt = 'a Eliom_content.Html5.elt
+       and type D.element = element'
+       and type D.item_element = item_element'
+       and type 'a D.opt = 'a option
+  end
+
   include Ojw_traversable_f.Make(struct
     type 'a opt = 'a opt'
 
@@ -61,8 +69,9 @@
       ::(a_user_data "value" value)
       ::a
     in
-    D.li ~a [
-      D.Raw.a ~a:[a_tabindex (-1); a_href (uri_of_string (fun () -> href))] elts
+    Eliom_content.Html5.D.li ~a [
+      Eliom_content.Html5.D.Raw.a
+        ~a:[a_tabindex (-1); a_href (uri_of_string (fun () -> href))] elts
     ]
 }}
 

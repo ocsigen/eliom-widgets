@@ -22,16 +22,16 @@
 
 {client{
   module type T = sig
-    include Ojw_alert_f.T
-      with type 'a elt = 'a elt'
-       and type parent = parent'
-       and type element = element'
+    include Ojw_alert_sigs.T
+      with type 'a D.elt = 'a elt'
+       and type D.parent = parent'
+       and type D.element = element'
   end
 
-  include Ojw_alert_f.T
-    with type 'a elt = 'a elt'
-     and type parent = parent'
-     and type element = element'
+  include Ojw_alert_sigs.T
+    with type 'a D.elt = 'a elt'
+     and type D.parent = parent'
+     and type D.element = element'
 }}
 
 {client{

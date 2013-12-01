@@ -5,15 +5,19 @@
   open Html5_types
 }}
 
+{shared{
+  type 'a elt' = 'a Eliom_content.Html5.elt
+  type element' = [ body_content ]
+}}
+
 {client{
   include Ojw_button_f.Make(struct
-      type 'a elt = 'a Eliom_content.Html5.elt
-      type element = [ body_content ]
+    type 'a elt = 'a elt'
+    type element = element'
 
-      let to_dom_elt = To_dom.of_element
-
-      module Alert = Ew_alert
-    end)
+    let to_dom_elt = To_dom.of_element
+    let of_dom_elt = Of_dom.of_element
+  end)(Ew_alert)
 }}
 
 {server{

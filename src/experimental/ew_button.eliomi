@@ -5,13 +5,18 @@
   open Dom
 }}
 
+{shared{
+  type 'a elt' = 'a Eliom_content.Html5.elt
+  type element' = [ body_content ]
+}}
+
 {client{
-  include Ojw_button_f.T
+  include Ojw_button_sigs.T
     with type Alert.t = Ew_alert.t
-    with type 'a Alert.elt = 'a Ew_alert.elt
-    with type Alert.element = Ew_alert.element
-    with type 'a elt = 'a Eliom_content.Html5.elt
-     and type element = [ body_content ]
+    with type 'a Alert.D.elt = 'a Ew_alert.D.elt
+    with type Alert.D.element = Ew_alert.D.element
+    with type 'a D.elt = 'a Eliom_content.Html5.elt
+     and type D.element = [ body_content ]
 }}
 
 {server{
