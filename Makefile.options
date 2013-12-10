@@ -13,6 +13,19 @@ SERVER_FILES := $(wildcard src/*.eliom* src/button/*.eliom* src/dropdown/*.eliom
 # Source files for the client
 CLIENT_FILES := $(wildcard src/*.eliom* src/button/*.eliom* src/dropdown/*.eliom*)
 
+# Source files for the server
+SERVER_FILES_DOC := $(wildcard \
+  src/*.eliomi \
+  src/button/*.eliomi \
+  src/dropdown/*.eliomi \
+)
+# Source files for the client
+CLIENT_FILES_DOC := $(wildcard \
+  src/*.eliomi \
+  src/button/*.eliomi \
+  src/dropdown/*.eliomi \
+)
+
 # OCamlfind packages for the server
 SERVER_PACKAGES := text
 # OCamlfind packages for the client

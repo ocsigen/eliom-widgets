@@ -38,7 +38,7 @@ endif
 ##----------------------------------------------------------------------
 ## General
 
-.PHONY: all byte opt
+.PHONY: all byte opt doc
 all: byte $(OPT_RULE)
 byte:: $(LIBDIR)/${PKG_NAME}.server.cma $(LIBDIR)/${PKG_NAME}.client.cma
 opt:: $(LIBDIR)/${PKG_NAME}.server.cmxs
@@ -187,6 +187,31 @@ $(DEPSDIR):
 	mkdir -p $@
 	mkdir -p $(addprefix $@/, ${CLIENT_DIRS})
 	mkdir -p $(addprefix $@/, ${SERVER_DIRS})
+
+##----------------------------------------------------------------------
+## Documentation
+
+WIKIDOC_DIR := $(shell ocamlfind query wikidoc)
+OPTIONS := -colorize-code -stars -sort -i $(WIKIDOC_DIR)
+
+doc: all
+	rm -rf doc
+	mkdir -p doc/client/html
+	mkdir -p doc/client/wiki
+	mkdir -p doc/server/html
+	mkdir -p doc/server/wiki
+	eliomdoc -client $(OPTIONS)\
+		-g odoc_wiki.cma -html -d doc/client/html\
+		$(CLIENT_INC_DIRS) $(CLIENT_FILES_DOC)
+	eliomdoc -client $(OPTIONS)\
+		-g odoc_wiki.cma -d doc/client/wiki\
+		$(CLIENT_INC_DIRS) $(CLIENT_FILES_DOC)
+	eliomdoc -server $(OPTIONS)\
+		-g odoc_wiki.cma -html -d doc/server/html\
+		$(SERVER_INC_DIRS) $(SERVER_FILES_DOC)
+	eliomdoc -server $(OPTIONS)\
+		-g odoc_wiki.cma -d doc/server/wiki\
+		$(SERVER_INC_DIRS) $(SERVER_FILES_DOC)
 
 ##----------------------------------------------------------------------
 ## Clean up
