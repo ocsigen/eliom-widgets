@@ -16,14 +16,12 @@ CLIENT_FILES := $(wildcard src/*.eliom* src/experimental/*.eliom* )
 # Source files for the server
 SERVER_FILES_DOC := $(wildcard \
   src/*.eliomi \
-  src/button/*.eliomi \
-  src/dropdown/*.eliomi \
+  src/experimental/*.eliomi \
 )
 # Source files for the client
 CLIENT_FILES_DOC := $(wildcard \
   src/*.eliomi \
-  src/button/*.eliomi \
-  src/dropdown/*.eliomi \
+  src/experimental/*.eliomi \
 )
 
 # OCamlfind packages for the server
