@@ -4,8 +4,8 @@
 }}
 
 {shared{
-  (** The type of the parent element. *)
-  type parent' =
+  (** The type of the content element (dynamic alert only). *)
+  type content' =
       [
         | body_content
       ]
@@ -20,29 +20,46 @@
   type 'a elt' = 'a Eliom_content.Html5.elt
 }}
 
+{shared{
+  type dyn_alert_fun' =
+      element' elt'
+      -> content' elt' list Lwt.t
+}}
+
 {client{
   module type T = sig
     include Ojw_alert_sigs.T
       with type 'a D.elt = 'a elt'
-       and type D.parent = parent'
        and type D.element = element'
+       and type 'a Content.elt = 'a Eliom_content.Html5.elt
+       and type Content.element = content'
   end
 
   include Ojw_alert_sigs.T
     with type 'a D.elt = 'a elt'
-     and type D.parent = parent'
      and type D.element = element'
-}}
-
-{client{
-  type t' = t
+     and type 'a Content.elt = 'a Eliom_content.Html5.elt
+     and type Content.element = content'
 }}
 
 {server{
-  type t'
-}}
+  val closeable_by_click :
+     element' elt'
+  -> element' elt'
 
-{shared{
-  (** The type of the function used to generate the alert content. *)
-  type alert_fun = t' -> element' elt'
+  val alert :
+     ?allow_outer_clicks:bool
+  -> ?before:(element' elt' -> unit Lwt.t)
+  -> ?after:(element' elt' -> unit Lwt.t)
+  -> element' elt'
+  -> element' elt'
+
+  val dyn_alert :
+     ?allow_outer_clicks:bool
+  -> ?before:(element' elt' -> unit Lwt.t)
+  -> ?after:(element' elt' -> unit Lwt.t)
+  -> element' elt'
+  -> dyn_alert_fun' client_value
+  -> element' elt'
+
 }}
