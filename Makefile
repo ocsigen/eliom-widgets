@@ -132,26 +132,33 @@ ${ELIOM_CLIENT_DIR}/%.cmi: %.eliomi
 ##----------------------------------------------------------------------
 ## Installation
 
+CLIENT_CMO=$(wildcard $(addsuffix /ew_*.cmo,$(addprefix $(ELIOM_CLIENT_DIR)/,$(CLIENT_DIRS))))
+CLIENT_CMI=$(wildcard $(addsuffix /ew_*.cmi,$(addprefix $(ELIOM_CLIENT_DIR)/,$(CLIENT_DIRS))))
+SERVER_CMI=$(wildcard $(addsuffix /ew_*.cmi,$(addprefix $(ELIOM_SERVER_DIR)/,$(SERVER_DIRS))))
+
+basename_for_each = $(shell echo $(foreach f,$(1),$(shell basename $(f))))
+
+#CLIENT_CMO_META=ew_traversable.cmo ew_alert.cmo ew_popup.cmo ew_active_set.cmo ew_table_color_picker.cmo ew_slider.cmo ew_editable.cmo ew_dyn_upload.cmo ew_accents.cmo ew_button.cmo ew_completion.cmo ew_dropdown.cmo
+CLIENT_CMO_META=$(call basename_for_each, $(call depsort,$(ELIOM_CLIENT_DIR),cmo,-server,$(CLIENT_INC),$(CLIENT_FILES)))
+
 META: META.in
 	sed -e 's#@@PKG_NAME@@#$(PKG_NAME)#g' \
 		-e 's#@@PKG_VERS@@#$(PKG_VERS)#g' \
 		-e 's#@@PKG_DESC@@#$(PKG_DESC)#g' \
 		-e 's#@@CLIENT_REQUIRES@@#$(CLIENT_PACKAGES)#g' \
-		-e 's#@@CLIENT_ARCHIVES_BYTE@@#$(PKG_NAME).client.cma#g' \
+		-e 's#@@CLIENT_ARCHIVES_BYTE@@#$(CLIENT_CMO_META)#g' \
 		-e 's#@@SERVER_REQUIRES@@#$(SERVER_PACKAGES)#g' \
 		-e 's#@@SERVER_ARCHIVES_BYTE@@#$(PKG_NAME).server.cma#g' \
 		-e 's#@@SERVER_ARCHIVES_NATIVE@@#$(PKG_NAME).server.cmxa#g' \
 		$< > $@
 
-CLIENT_CMI=$(wildcard $(addsuffix /ew_*.cmi,$(addprefix $(ELIOM_CLIENT_DIR)/,$(CLIENT_DIRS))))
-SERVER_CMI=$(wildcard $(addsuffix /ew_*.cmi,$(addprefix $(ELIOM_SERVER_DIR)/,$(SERVER_DIRS))))
 install: all META
 	$(OCAMLFIND) install $(PKG_NAME) META
 	mkdir -p `$(OCAMLFIND) query $(PKG_NAME)`/client
 	mkdir -p `$(OCAMLFIND) query $(PKG_NAME)`/server
 	cp $(CLIENT_CMI) `$(OCAMLFIND) query $(PKG_NAME)`/client
+	cp $(CLIENT_CMO) `$(OCAMLFIND) query $(PKG_NAME)`/client
 	cp $(SERVER_CMI) `$(OCAMLFIND) query $(PKG_NAME)`/server
-	cp $(LIBDIR)/$(PKG_NAME).client.cma `$(OCAMLFIND) query $(PKG_NAME)`/client
 	cp $(LIBDIR)/$(PKG_NAME).server.cm* `$(OCAMLFIND) query $(PKG_NAME)`/server
 
 uninstall:
