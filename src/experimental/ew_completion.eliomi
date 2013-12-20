@@ -9,7 +9,8 @@
   type element' = Ew_button.element'
   type 'a elt' = 'a Ew_button.elt'
 
-  type completion_fun = string -> Ew_traversable.item_element' Ew_traversable.elt' list
+  type refresh_fun = int -> string -> Ew_traversable.item_element' Ew_traversable.elt' list Lwt.t
+  type on_confirm_fun = string -> unit Lwt.t
 }}
 
 {server{
@@ -19,17 +20,37 @@
 }}
 
 
+  (*
 {client{
-  include Ojw_completion_sigs.T
+  (*include Ojw_completion_sigs.T
     with type D.element = element'
     with type 'a D.elt = 'a elt'
      and type Dropdown.Traversable.D.element = Ew_traversable.element'
      and type 'a Dropdown.Traversable.D.elt = 'a Ew_traversable.elt'
+   *)
+  val completion : ?refresh:completion_fun -> unit -> unit -> (int * int)
+}}
+   *)
+{shared{
+  val li :
+    ?a:[< Html5_types.li_attrib > `Class `User_data ]
+      Eliom_content.Html5.D.attrib list
+  -> value:Html5_types.text
+  -> Html5_types.flow5_without_interactive Eliom_content.Html5.D.Raw.elt list
+  -> [> Html5_types.li ] Eliom_content.Html5.D.elt
 }}
 
 {server{
   val completion :
-     refresh:completion_fun client_value
+     refresh:refresh_fun client_value
+  -> ?limit:int
+  -> ?accents:bool
+  -> ?sensitive:bool
+  -> ?adaptive:bool
+  -> ?auto_match:bool
+  -> ?clear_input_on_confirm:bool
+  -> ?move_with_tab:bool
+  -> ?on_confirm:on_confirm_fun client_value
   -> 'a elt'
   -> 'a elt'
   -> 'a elt' list
