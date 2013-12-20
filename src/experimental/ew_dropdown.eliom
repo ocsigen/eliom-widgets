@@ -4,10 +4,6 @@
   open Html5_types
 }}
 
-{server{
-  type dropdown_fun = Ew_alert.t' -> Ew_traversable.element' Ew_traversable.elt'
-}}
-
 {shared{
   type 'a elt' = 'a Ew_button.elt'
   type element' = Ew_button.element'
@@ -26,7 +22,7 @@
 }}
 
 {shared{
-  let li = Ew_traversable.li
+  let li ?a ~href = Ew_traversable.li ?a ?value:None ~anchor:true ~href
 }}
 
 {server{

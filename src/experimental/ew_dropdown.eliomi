@@ -4,10 +4,6 @@
   open Html5_types
 }}
 
-{server{
-  type dropdown_fun = Ew_alert.t' -> Ew_traversable.element' Ew_traversable.elt'
-}}
-
 {shared{
   type 'a elt' = 'a Ew_button.elt'
   type element' = Ew_button.element'
@@ -25,8 +21,7 @@
   val li :
     ?a:[< Html5_types.li_attrib > `Class `User_data ]
       Eliom_content.Html5.D.attrib list
-  -> ?href:string
-  -> value:Html5_types.text
+  -> href:string
   -> Html5_types.flow5_without_interactive Eliom_content.Html5.D.Raw.elt list
   -> [> Html5_types.li ] Eliom_content.Html5.D.elt
 }}
