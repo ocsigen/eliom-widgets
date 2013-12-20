@@ -5,8 +5,6 @@
 }}
 
 {shared{
-  type 'a opt' = 'a option
-
   type 'a elt' = 'a Eliom_content.Html5.elt
 
   type element' = [
@@ -21,58 +19,50 @@
 {client{
   module type T = sig
     include Ojw_traversable_sigs.T
-      with type 'a D.elt = 'a Eliom_content.Html5.elt
+      with type 'a D.elt = 'a elt'
        and type D.element = element'
-       and type D.item_element = item_element'
-       and type 'a D.opt = 'a option
+       and type 'a Content.elt = 'a elt'
+       and type Content.element = item_element'
   end
 
   include Ojw_traversable_f.Make(struct
-    type 'a opt = 'a opt'
-
     type 'a elt = 'a elt'
     type element = element'
-    type item_element = item_element'
-
-    let to_opt a =
-      Js.Opt.case (a)
-        (fun () -> None)
-        (fun a -> Some a)
-
-    let of_opt = function
-      | None -> Js.null
-      | Some a -> Js.some a
-
-    let opt_none = None
-    let opt_some a = Some a
-
-    let opt_iter opt f = match opt with
-      | None -> ()
-      | Some a -> f a
-
-    let opt_case opt f f' = match opt with
-      | None -> f ()
-      | Some a -> f' a
 
     let to_dom_elt = To_dom.of_element
     let of_dom_elt = Of_dom.of_element
+  end)(struct
+    type 'a elt = 'a elt'
+    type element = item_element'
 
-    let to_dom_item_elt = To_dom.of_element
-    let of_dom_item_elt = Of_dom.of_element
+    let to_dom_elt = To_dom.of_element
+    let of_dom_elt = Of_dom.of_element
   end)
 }}
 
+{server{
+  module Style = struct
+    let traversable_cls = "ojw_traversable"
+    let traversable_elt_cls = "ojw_traversable_elt"
+    let selected_cls = "selected"
+  end
+}}
+
 {shared{
-  let li ?(a = []) ?(href = "#") ~value elts =
+  let li ?(a = []) ?(anchor = true) ?(href = "#") ?value elts =
     let a =
-      (a_class ["ew_dropdown_element"])
-      ::(a_user_data "value" value)
-      ::a
+      (a_class [Style.traversable_elt_cls])
+      ::(match value with
+          | None -> []
+          | Some value -> [a_user_data "value" value]
+      ) @ a
     in
-    Eliom_content.Html5.D.li ~a [
-      Eliom_content.Html5.D.Raw.a
-        ~a:[a_tabindex (-1); a_href (uri_of_string (fun () -> href))] elts
-    ]
+    if anchor then
+      Eliom_content.Html5.D.li ~a [
+        Eliom_content.Html5.D.Raw.a
+          ~a:[a_tabindex (-1); a_href (uri_of_string (fun () -> href))] elts
+      ]
+    else Eliom_content.Html5.D.li ~a elts
 }}
 
 {server{
