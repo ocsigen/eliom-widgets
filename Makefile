@@ -210,10 +210,10 @@ doc:
 	mkdir -p doc/client/wiki
 	mkdir -p doc/server/html
 	mkdir -p doc/server/wiki
-	$(call eliomdoc_html,client, $(CLIENT_INC_DIRS) $(CLIENT_FILES_DOC))
-	$(call eliomdoc_wiki,client, $(CLIENT_INC_DIRS) $(CLIENT_FILES_DOC))
-	$(call eliomdoc_html,server, $(SERVER_INC_DIRS) $(SERVER_FILES_DOC))
-	$(call eliomdoc_wiki,server, $(SERVER_INC_DIRS) $(SERVER_FILES_DOC))
+	$(call eliomdoc_html,client, $(CLIENT_INC) $(CLIENT_INC_DIRS) $(CLIENT_FILES_DOC))
+	$(call eliomdoc_wiki,client, $(CLIENT_INC) $(CLIENT_INC_DIRS) $(CLIENT_FILES_DOC))
+	$(call eliomdoc_html,server, $(SERVER_INC) $(SERVER_INC_DIRS) $(SERVER_FILES_DOC))
+	$(call eliomdoc_wiki,server, $(SERVER_INC) $(SERVER_INC_DIRS) $(SERVER_FILES_DOC))
 
 ##----------------------------------------------------------------------
 ## Clean up
