@@ -11,7 +11,7 @@
       (unit, Eliom_lib.file_info, Eliom_service.nonattached,
        [ `WithoutSuffix ], unit,
        [ `One of Eliom_lib.file_info ] Eliom_parameter.param_name,
-       [ `Registrable ], (string list * string) Eliom_service.caml_service)
+       [ `Registrable ], (string list * string) Eliom_service.ocaml_service)
         Eliom_service.service
 }}
 
@@ -68,7 +68,7 @@
     fname
 
   let service ?name () =
-    Eliom_service.OCaml.post_coservice'
+    Eliom_service.Ocaml.post_coservice'
       ?name
       ~post_params:(Eliom_parameter.file "f")
       ()
@@ -191,7 +191,7 @@
 {client{
   let dyn_upload ~(service : dynup_service_t) ~(file : File.file Js.t) handler =
     lwt (dname, fname) =
-      Eliom_client.call_caml_service
+      Eliom_client.call_ocaml_service
         ~service:(service)
         () file
     in
