@@ -27,11 +27,9 @@ let editable_name
     ?(edit : 'a my_btn option)
     ?(confirm : 'b my_btn option)
     ?(cancel : 'c my_btn option)
-    ?(default_name="New name") ~content ~(callback:'f client_value) = 
-  let fake_input = 
-    (* FIXME a_contenteditable is bugged in Tyxml, fix it when this is resolved !!!!! *)
-    (* D.span ~a:[a_contenteditable `True] *)
-    D.span ~a:[to_attrib (Xml.string_attrib "contenteditable" "true") ]
+    ?(default_name="New name") ~content ~(callback:'f client_value) =
+  let fake_input =
+    span ~a:[a_contenteditable `True ]
       [pcdata default_name] in
   let btn_icon title content = 
     D.Raw.a ~a:[ a_title title ; a_class ["link"] ]
