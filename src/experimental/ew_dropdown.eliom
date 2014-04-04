@@ -26,7 +26,11 @@
 }}
 
 {server{
-  let dropdown ?hover ?hover_timeout elt elt_traversable =
+  let dropdown
+      ?(hover:bool option)
+      ?(hover_timeout:float option)
+      (elt : element' elt')
+      (elt_traversable : Ew_traversable.element' elt') =
     ignore {unit{
       Eliom_client.onload (fun () ->
         ignore (
@@ -37,5 +41,5 @@
         )
       )
     }};
-    [elt; elt_traversable];
+    (elt, elt_traversable);
 }}

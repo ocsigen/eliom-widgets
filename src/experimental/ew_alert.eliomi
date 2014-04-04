@@ -49,8 +49,8 @@
 
   val alert :
      ?allow_outer_clicks:bool
-  -> ?before:(element' elt' -> unit Lwt.t)
-  -> ?after:(element' elt' -> unit Lwt.t)
+  -> ?before:(element' elt' -> unit)
+  -> ?after:(element' elt' -> unit)
   -> element' elt'
   -> element' elt'
 

@@ -96,32 +96,33 @@
 
 {server{
   let completion
-        ~refresh
-        ?limit
-        ?accents
-        ?sensitive
-        ?adaptive
-        ?auto_match
-        ?clear_input_on_confirm
-        ?move_with_tab
-        ?on_confirm
-        elt elt_traversable =
+      ~(refresh : refresh_fun client_value)
+      ?(limit : int option)
+      ?(accents : bool option)
+      ?( sensitive : bool option)
+      ?(adaptive : bool option)
+      ?(auto_match : bool option)
+      ?(clear_input_on_confirm : bool option)
+      ?(move_with_tab : bool option)
+      ?(on_confirm : on_confirm_fun client_value option)
+      (elt : element' elt')
+      (elt_traversable : Ew_traversable.element' elt') =
     ignore {unit{
-      Eliom_client.onload (fun () ->
-        let (_,_) = M.completion__
-            ~refresh:%refresh
-            ?limit:%limit
-            ?accents:%accents
-            ?sensitive:%sensitive
-            ?adaptive:%adaptive
-            ?auto_match:%auto_match
-            ?clear_input_on_confirm:%clear_input_on_confirm
-            ?move_with_tab:%move_with_tab
-            ?on_confirm:%on_confirm
-            %elt
-            %elt_traversable
-        in ()
+        Eliom_client.onload (fun () ->
+          let (_,_) = M.completion__
+              ~refresh:%refresh
+              ?limit:%limit
+              ?accents:%accents
+              ?sensitive:%sensitive
+              ?adaptive:%adaptive
+              ?auto_match:%auto_match
+              ?clear_input_on_confirm:%clear_input_on_confirm
+              ?move_with_tab:%move_with_tab
+              ?on_confirm:%on_confirm
+              %elt
+              %elt_traversable
+          in ()
       )
     }};
-    [elt; elt_traversable]
+    (elt, elt_traversable)
 }}

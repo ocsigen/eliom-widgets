@@ -44,8 +44,8 @@
   -> ?pressed:bool
   -> ?predicate:(unit -> bool Lwt.t)
   -> ?allow_outer_clicks:bool
-  -> ?before:(element' elt' -> Ew_alert.element' Ew_alert.elt' -> unit Lwt.t)
-  -> ?after:(element' elt' -> Ew_alert.element' Ew_alert.elt'-> unit Lwt.t)
+  -> ?before:(element' elt' -> Ew_alert.element' Ew_alert.elt' -> unit)
+  -> ?after:(element' elt' -> Ew_alert.element' Ew_alert.elt'-> unit)
   -> element' elt'
   -> Ew_alert.element' Ew_alert.elt'
   -> (element' elt' * Ew_alert.element' Ew_alert.elt')

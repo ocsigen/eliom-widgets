@@ -30,7 +30,7 @@
   val dropdown :
      ?hover:bool
   -> ?hover_timeout:float
-  -> 'a elt'
-  -> 'a elt'
-  -> 'a elt' list
+  -> element' elt'
+  -> Ew_traversable.element' elt'
+  -> (element' elt' * Ew_traversable.element' elt')
 }}

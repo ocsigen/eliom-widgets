@@ -66,7 +66,7 @@
 }}
 
 {server{
-  let traversable elt =
+  let traversable (elt : element' elt') =
     ignore {unit{
       Eliom_client.onload (fun () ->
         ignore (traversable %elt)

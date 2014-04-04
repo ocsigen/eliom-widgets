@@ -32,9 +32,9 @@
 
   let button
       ?(set : Ew_active_set.t' client_value option)
-      ?pressed
-      ?predicate
-      elt =
+      ?(pressed : bool option)
+      ?(predicate : (unit -> bool Lwt.t) option)
+      (elt : element' elt') =
     ignore {unit{
       Eliom_client.onload (fun () ->
         ignore (
@@ -52,13 +52,13 @@
 
   let button_alert
         ?(set : Ew_active_set.t' client_value option)
-        ?pressed
-        ?predicate
-        ?allow_outer_clicks
-        ?before
-        ?after
-        elt
-        elt_alert =
+        ?(pressed : bool option)
+        ?(predicate : (unit -> bool Lwt.t) option)
+        ?(allow_outer_clicks : bool option)
+        ?(before : (element' elt' -> Ew_alert.element' Ew_alert.elt' -> unit) option)
+        ?(after : (element' elt' -> Ew_alert.element' Ew_alert.elt' -> unit) option)
+        (elt : element' elt')
+        (elt_alert : Ew_alert.element' Ew_alert.elt') =
     ignore {unit{
       Eliom_client.onload (fun () ->
         ignore (
@@ -80,12 +80,14 @@
 
   let button_dyn_alert
         ?(set : Ew_active_set.t' client_value option)
-        ?pressed
-        ?predicate
-        ?allow_outer_clicks
-        ?before
-        ?after
-        elt elt_alert f =
+        ?(pressed : bool option)
+        ?(predicate : (unit -> bool Lwt.t) option)
+        ?(allow_outer_clicks : bool option)
+        ?(before : (element' elt' -> Ew_alert.element' Ew_alert.elt' -> unit Lwt.t) option)
+        ?(after : (element' elt' -> Ew_alert.element' Ew_alert.elt' -> unit Lwt.t) option)
+        (elt : element' elt')
+        (elt_alert : Ew_alert.element' Ew_alert.elt')
+        (f : button_dyn_alert_fun' client_value) =
     ignore {unit{
       Eliom_client.onload (fun () ->
         ignore (

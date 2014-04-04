@@ -53,7 +53,7 @@
 }}
 
 {server{
-  let closeable_by_click elt =
+  let closeable_by_click (elt : element' elt') =
     ignore {unit{
       Eliom_client.onload (fun () ->
         ignore (closeable_by_click %elt)
@@ -62,10 +62,10 @@
     elt
 
   let alert
-      ?allow_outer_clicks
-      ?before
-      ?after
-      elt =
+      ?(allow_outer_clicks : bool option)
+      ?(before : (element' elt' -> unit) option)
+      ?(after : (element' elt' -> unit) option)
+      (elt : element' elt') =
     ignore {unit{
       Eliom_client.onload (fun () ->
         ignore (
@@ -79,10 +79,11 @@
     elt
 
   let dyn_alert
-      ?allow_outer_clicks
-      ?before
-      ?after
-      elt f =
+      ?(allow_outer_clicks : bool option)
+      ?(before : (element' elt' -> unit Lwt.t) option)
+      ?(after : (element' elt' -> unit Lwt.t) option)
+      (elt : element' elt')
+      (f : dyn_alert_fun' client_value) =
     ignore {unit{
       Eliom_client.onload (fun () ->
         ignore (

@@ -51,7 +51,7 @@
   -> ?clear_input_on_confirm:bool
   -> ?move_with_tab:bool
   -> ?on_confirm:on_confirm_fun client_value
-  -> 'a elt'
-  -> 'a elt'
-  -> 'a elt' list
+  -> element' elt'
+  -> Ew_traversable.element' elt'
+  -> (element' elt' * Ew_traversable.element' elt')
 }}

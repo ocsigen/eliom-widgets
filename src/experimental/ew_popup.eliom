@@ -27,7 +27,11 @@
 {server{
   let closeable_by_click = Ew_alert.closeable_by_click
 
-  let popup ?show ?allow_outer_clicks ?with_background elt =
+  let popup
+      ?(show : bool option)
+      ?(allow_outer_clicks : bool option)
+      ?(with_background : bool option)
+      (elt : element' elt') =
     ignore {unit{
       Eliom_client.onload (fun () ->
         ignore (
@@ -41,7 +45,12 @@
     }};
     elt
 
-  let dyn_popup ?show ?allow_outer_clicks ?with_background elt f =
+  let dyn_popup
+      ?(show : bool option)
+      ?(allow_outer_clicks : bool option)
+      ?(with_background : bool option)
+      (elt : element' elt')
+      (f : dyn_popup_fun' client_value) =
     ignore {unit{
       Eliom_client.onload (fun () ->
         ignore (
