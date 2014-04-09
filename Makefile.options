@@ -30,7 +30,7 @@ SERVER_PACKAGES := text
 CLIENT_PACKAGES := ojwidgets
 
 # Native mode (yes/no): Compile also with native mode (it will always compile with byte mode)
-NATIVE := no
+NATIVE := yes
 
 # Debug package (yes/no): Debugging info in compilation
 DEBUG := no
