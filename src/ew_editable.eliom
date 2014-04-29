@@ -10,7 +10,7 @@ let onclick_replace container replacement trigger =
   Lwt.async
     (fun () ->
        clicks trigger (fun _ _ ->
-	 Lwt.return (Manip.replaceAllChildren container replacement)
+	 Lwt.return (Manip.replaceChildren container replacement)
        ))
   }}
 
