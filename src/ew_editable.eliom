@@ -29,7 +29,7 @@ let editable_name
     ?(cancel : 'c my_btn option)
     ?(default_name="New name") ~content ~(callback:(string -> unit Lwt.t) client_value) =
   let fake_input =
-    span ~a:[a_contenteditable `True ]
+    span ~a:[a_contenteditable true]
       [pcdata default_name] in
   let btn_icon title content =
     D.Raw.a ~a:[ a_title title ; a_class ["link"] ]
