@@ -134,9 +134,7 @@ let genere_color_table lll_color =
       in
 
       let div_color_list', trs = build_column div_color_list [] head in
-      let first_tr = List.hd trs in
-      let trs' = try List.tl trs with | Failure "tl" -> [] in
-      let tbl = table ~a:[a_class["ew_table_color_picker_table"]] (first_tr) trs' in
+      let tbl = table ~a:[a_class["ew_table_color_picker_table"]] trs in
       build_table
         div_color_list'
         (tbl::tables)
