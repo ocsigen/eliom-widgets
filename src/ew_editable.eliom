@@ -53,7 +53,7 @@ let editable_name
 	let open Lwt_js_events in
 	click (To_dom.of_element confirm) >>= (fun _ ->
 	  (* AFAIK there is no security issue here, since it should be sanitize *)
-	  let new_name = Js.to_string (To_dom.of_span fake_input)##innerHTML in
+	  let new_name = Js.to_string (To_dom.of_element fake_input)##innerHTML in
 	  callback new_name
 	))
     }} in

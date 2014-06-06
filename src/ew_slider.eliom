@@ -93,8 +93,8 @@ let start (slider, dragger, ori, value,
            start_slide, move_slide, end_slide, click) =
 
   (* get data *)
-  let dom_slider = Eliom_content.Html5.To_dom.of_div slider in
-  let dom_dragger = Eliom_content.Html5.To_dom.of_div dragger in
+  let dom_slider = Eliom_content.Html5.To_dom.of_element slider in
+  let dom_dragger = Eliom_content.Html5.To_dom.of_element dragger in
 
   let margin = 4 in
   let slider_width, slider_height =

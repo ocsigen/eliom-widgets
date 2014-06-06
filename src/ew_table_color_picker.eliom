@@ -166,11 +166,11 @@ let fusion (color_ref, color_div, fst_list, block) (_, _, snd_list, _) =
   (color_ref, color_div, fst_list@snd_list, block)
 
 let start (color_ref, color_div, color_list, _) =
-  let dom_color_div = Eliom_content.Html5.To_dom.of_div color_div in
+  let dom_color_div = Eliom_content.Html5.To_dom.of_element color_div in
   let rec aux = function
     | []                -> ()
     | div_elt::tail     ->
-      let dom_div = Eliom_content.Html5.To_dom.of_div div_elt in
+      let dom_div = Eliom_content.Html5.To_dom.of_element div_elt in
       Lwt.async (fun () ->
         Lwt_js_events.clicks dom_div (fun _ _ ->
           Lwt.return
