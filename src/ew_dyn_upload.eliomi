@@ -10,7 +10,7 @@
 
   (** Type of a dynamic service. *)
   type dynup_service_t =
-      (unit, Eliom_lib.file_info, Eliom_service.nonattached,
+      (unit, Eliom_lib.file_info, Eliom_service.service_method, Eliom_service.non_attached_kind, [`NonattachedCoservice],
        [ `WithoutSuffix ], unit,
        [ `One of Eliom_lib.file_info ] Eliom_parameter.param_name,
        [ `Registrable ], (string list * string) Eliom_service.ocaml_service)
