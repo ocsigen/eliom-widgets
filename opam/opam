@@ -2,11 +2,13 @@ opam-version: "1"
 maintainer: "dev@ocsigen.org"
 version: "dev"
 build: [
-  ["%{make}%"]
-  ["%{make}%" "install"]
+  [ make ]
+  [ make "install" ]
 ]
 remove: [
-  ["ocamlfind" "remove" "eliom-widgets"]
+  [ "rm" "-rf" "%{lib}%/eliom-widgets/server" ]
+  [ "rm" "-rf" "%{lib}%/eliom-widgets/client" ]
+  [ "ocamlfind" "remove" "eliom-widgets" ]
 ]
 depends: [
   "ocamlfind"
