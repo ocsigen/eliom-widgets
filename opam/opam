@@ -1,5 +1,6 @@
 opam-version: "1"
 maintainer: "dev@ocsigen.org"
+version: "dev"
 build: [
   ["%{make}%"]
   ["%{make}%" "install"]
@@ -9,8 +10,8 @@ remove: [
 ]
 depends: [
   "ocamlfind"
-  "ocaml-text"
-  "js_of_ocaml" {>= "9999"}
-  "ojwidgets"   {>= "9999"}
-  "eliom"       {>= "9999"}
+  "text"
+  "js_of_ocaml" {>= "dev"}
+  "ojwidgets"   {>= "dev"}
+  "eliom"       {>= "dev"}
 ]
