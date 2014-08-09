@@ -55,6 +55,7 @@
         ?(pressed : bool option)
         ?(predicate : (unit -> bool Lwt.t) option)
         ?(allow_outer_clicks : bool option)
+        ?(closeable_by_button : bool option)
         ?(before : (element' elt' -> Ew_alert.element' Ew_alert.elt' -> unit) option)
         ?(after : (element' elt' -> Ew_alert.element' Ew_alert.elt' -> unit) option)
         (elt : element' elt')
@@ -70,6 +71,7 @@
             ?pressed:%pressed
             ?predicate:%predicate
             ?allow_outer_clicks:%allow_outer_clicks
+            ?closeable_by_button:%closeable_by_button
             ?before:%before
             ?after:%after
             %elt
@@ -83,6 +85,7 @@
         ?(pressed : bool option)
         ?(predicate : (unit -> bool Lwt.t) option)
         ?(allow_outer_clicks : bool option)
+        ?(closeable_by_button : bool option)
         ?(before : (element' elt' -> Ew_alert.element' Ew_alert.elt' -> unit Lwt.t) option)
         ?(after : (element' elt' -> Ew_alert.element' Ew_alert.elt' -> unit Lwt.t) option)
         (elt : element' elt')
@@ -100,6 +103,7 @@
             ?pressed:%pressed
             ?predicate:%predicate
             ?allow_outer_clicks:%allow_outer_clicks
+            ?closeable_by_button:%closeable_by_button
             ?before:%before
             ?after:%after
             %elt
