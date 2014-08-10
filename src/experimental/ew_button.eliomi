@@ -21,6 +21,8 @@
   include Ojw_button_sigs.T
     with type 'a Alert.D.elt = 'a Ew_alert.D.elt
     with type Alert.D.element = Ew_alert.D.element
+    with type 'a Alert.Content.elt = 'a Ew_alert.D.elt
+    with type Alert.Content.element = Ew_alert.D.element
     with type 'a D.elt = 'a Eliom_content.Html5.elt
      and type D.element = [ body_content ]
 }}
