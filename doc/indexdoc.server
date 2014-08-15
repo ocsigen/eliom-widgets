@@ -1,17 +1,23 @@
 {1 Eliom-widgets server API}
 
+{2 Helpers and tools}
+
 {!modules:
     Ew_accents
-    Ew_dropdown
     Ew_editable
-    Ew_slider
+    Ew_dyn_upload
+}
+
+{2 Widgets}
+
+{!modules:
+    Ew_alert
+    Ew_popup
     Ew_button
-    Ew_dyn_upload
-    Ew_editable
+    Ew_traversable
+    Ew_dropdown
     Ew_completion
-    Ew_dyn_upload
     Ew_table_color_picker
-    Ew_slider
 }
 
 {2 Index}
