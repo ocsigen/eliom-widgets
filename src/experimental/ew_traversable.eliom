@@ -49,12 +49,15 @@
 }}
 
 {shared{
-  let li ?(a = []) ?(anchor = true) ?(href = "#") ?value elts =
+  let li ?(a = []) ?(anchor = true) ?(href = "#") ?value ?value_to_match elts =
     let a =
       (a_class [Style.traversable_elt_cls])
       ::(match value with
           | None -> []
-          | Some value -> [a_user_data "value" value]
+          | Some value -> [a_user_data "value" value])
+      @ (match value_to_match with
+          | None -> []
+          | Some value_to_match -> [a_user_data "value-to-match" value_to_match]
       ) @ a
     in
     if anchor then

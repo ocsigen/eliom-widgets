@@ -36,6 +36,7 @@
     ?a:[< Html5_types.li_attrib > `Class `User_data ]
       Eliom_content.Html5.D.attrib list
   -> value:Html5_types.text
+  -> value_to_match:Html5_types.text
   -> Html5_types.flow5_without_interactive Eliom_content.Html5.D.Raw.elt list
   -> [> Html5_types.li ] Eliom_content.Html5.D.elt
 }}

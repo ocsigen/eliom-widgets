@@ -22,7 +22,7 @@
 }}
 
 {shared{
-  let li ?a ~href = Ew_traversable.li ?a ?value:None ~anchor:true ~href
+  let li ?a ~href = Ew_traversable.li ?a ?value:None ~anchor:true ~href ?value_to_match:None
 }}
 
 {server{

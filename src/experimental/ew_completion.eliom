@@ -82,7 +82,7 @@
 }}
 
 {shared{
-  let li ?a ~value = Ew_traversable.li ?a ?href:None ~anchor:false ~value
+  let li ?a ~value ~value_to_match = Ew_traversable.li ?a ?href:None ~anchor:false ~value ~value_to_match
 }}
   (*
 {client{
